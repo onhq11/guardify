@@ -1,16 +1,20 @@
 import { ReactNode } from "react";
 import Link from "next/link";
 import Flex from "@/components/Layout/Flex";
-import { Routes } from "@/config/routes";
 import NavButton from "@/components/Layout/Menu/Route/NavButton";
+import { Route as RouteType } from "@/utils/route";
 
 interface Props {
-  route: Routes;
+  route: RouteType | undefined;
   icon: ReactNode;
   label?: string;
 }
 
 export default function Route({ route, icon, label }: Props) {
+  if (!route) {
+    return <></>;
+  }
+
   return (
     <Link href={route.href} passHref>
       <NavButton href={route.href}>

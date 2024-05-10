@@ -2,7 +2,7 @@
 
 import { usePathname } from "next/navigation";
 import { Typography, useTheme } from "@mui/material";
-import { getRouteInfo } from "@/utils/routeUtils";
+import { getRouteInfoByUrl } from "@/utils/route";
 
 export default function Heading() {
   const pathname = usePathname();
@@ -19,7 +19,7 @@ export default function Heading() {
         mt: 4,
       }}
     >
-      {getRouteInfo(pathname)?.label}
+      {getRouteInfoByUrl(pathname)?.label}
     </Typography>
   );
 }
