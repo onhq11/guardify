@@ -3,6 +3,7 @@ import { createTheme } from "@mui/material/styles";
 
 const theme = createTheme({
   palette: {
+    mode: "dark",
     background: {
       default: "#1c2039",
       paper: "#262b49",
@@ -23,6 +24,23 @@ const theme = createTheme({
   },
   typography: {
     fontFamily: "Roboto, sans-serif",
+  },
+  components: {
+    MuiCard: {
+      styleOverrides: {
+        root: {
+          backgroundImage: "none",
+        },
+      },
+    },
+    MuiPaper: {
+      styleOverrides: {
+        root: {
+          backgroundImage: "none",
+          borderRadius: "12px",
+        },
+      },
+    },
   },
 });
 

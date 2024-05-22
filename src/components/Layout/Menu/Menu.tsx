@@ -1,6 +1,6 @@
 "use client";
 
-import { Box, useMediaQuery, useTheme } from "@mui/material";
+import { Box } from "@mui/material";
 import Image from "next/image";
 import icon from "@/assets/horizontal-logo.png";
 import { ReactNode } from "react";
@@ -11,9 +11,6 @@ interface Props {
 }
 
 export default function Menu({ children }: Props) {
-  const theme = useTheme();
-  const isSmallScreen = useMediaQuery(theme.breakpoints.down("sm"));
-
   return (
     <Box
       sx={{

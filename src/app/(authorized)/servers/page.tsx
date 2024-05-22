@@ -1,5 +1,6 @@
 import Flex from "@/components/Layout/Flex";
 import {
+  Button,
   Card,
   Chip,
   IconButton,
@@ -11,13 +12,17 @@ import {
 } from "@mui/material";
 import TableCell from "@/components/Table/TableCell";
 import { GoDotFill } from "react-icons/go";
-import { PiSignIn } from "react-icons/pi";
+import { PiPlus, PiSignIn } from "react-icons/pi";
+import LinkModal from "@/app/(authorized)/servers/LinkModal";
 
 export default function Panel() {
   return (
     <Flex center sx={{ flex: 1 }}>
-      <Card sx={{ p: 2, flex: 1 }}>
+      <Card sx={{ p: 3, flex: 1 }}>
         <Flex column sx={{ flex: 1 }}>
+          <Flex end>
+            <LinkModal />
+          </Flex>
           <TableContainer sx={{ height: "80vh" }}>
             <Table stickyHeader>
               <TableHead>

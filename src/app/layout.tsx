@@ -5,6 +5,13 @@ import Providers from "@/components/Layout/Providers";
 export const metadata: Metadata = {
   title: "Guardify",
   description: "",
+  icons: [
+    {
+      rel: "icon",
+      url: "favicon.ico",
+      sizes: "any",
+    },
+  ],
 };
 
 export default function RootLayout({
@@ -14,9 +21,6 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <head>
-        <link rel="icon" href={"favicon.ico"} sizes="any" />
-      </head>
       <body>
         <Providers>{children}</Providers>
       </body>

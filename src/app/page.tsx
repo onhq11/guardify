@@ -1,5 +1,9 @@
 import { Button, IconButton, Paper } from "@mui/material";
 import { PiInfo } from "react-icons/pi";
+import { protectedRoutes } from "@/config/routes/protectedRoutes";
+import Flex from "@/components/Layout/Flex";
+import { routes } from "@/config/routes/routes";
+import Link from "next/link";
 
 export default function Home() {
   return (
@@ -46,6 +50,30 @@ export default function Home() {
         <h2>Card</h2>
         <p>Some content</p>
       </Paper>
+      <h1 style={{ marginTop: 20 }}>Protected routes</h1>
+      <Flex sx={{ gap: 2 }}>
+        {protectedRoutes.map((route) => {
+          return (
+            <Link href={route.href} key={route.name}>
+              <Button variant="outlined" color="secondary" key={route.name}>
+                {route.name}
+              </Button>
+            </Link>
+          );
+        })}
+      </Flex>
+      <h1 style={{ marginTop: 20 }}>Normal routes</h1>
+      <Flex sx={{ gap: 2 }}>
+        {routes.map((route) => {
+          return (
+            <Link href={route.href} key={route.name}>
+              <Button variant="outlined" color="secondary">
+                {route.name}
+              </Button>
+            </Link>
+          );
+        })}
+      </Flex>
     </>
   );
 }

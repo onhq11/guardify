@@ -1,3 +1,3 @@
 export default function Panel() {
-  return "NIGGER";
+  return "PANEL";
 }
