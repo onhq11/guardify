@@ -15,7 +15,7 @@ export default function Providers({ children }: Props) {
     <AppRouterCacheProvider>
       <SnackbarProvider>
         <ThemeProvider theme={theme}>
-          <CssBaseline />
+          <CssBaseline enableColorScheme />
           {children}
         </ThemeProvider>
       </SnackbarProvider>
