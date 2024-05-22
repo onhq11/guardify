@@ -12,7 +12,7 @@ interface Props {
 export default function Modal({ open, children, size = "sm" }: Props) {
   return (
     <Dialog open={open} maxWidth={size} fullWidth>
-      <DialogContent sx={{ p: 3 }}>{children}</DialogContent>
+      <DialogContent sx={{ p: 3.5 }}>{children}</DialogContent>
     </Dialog>
   );
 }

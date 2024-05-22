@@ -16,24 +16,13 @@ export default function AuthorizedLayout({
   return (
     <Flex>
       <Menu>
-        <Label>Dashboard</Label>
         <Route route={getRouteInfoByName("panel")} icon={<GrDashboard />} />
         <Route route={getRouteInfoByName("servers")} icon={<CiServer />} />
-        <Route route={getRouteInfoByName("index")} icon={<RxDashboard />} />
-        <Route route={getRouteInfoByName("index")} icon={<RxDashboard />} />
-        <Route route={getRouteInfoByName("index")} icon={<RxDashboard />} />
-        <Route route={getRouteInfoByName("index")} icon={<RxDashboard />} />
-        <Route route={getRouteInfoByName("index")} icon={<RxDashboard />} />
-        <Route route={getRouteInfoByName("index")} icon={<RxDashboard />} />
-
-        <Label>Dashboard</Label>
-        <Route route={getRouteInfoByName("index")} icon={<GrDashboard />} />
-        <Route route={getRouteInfoByName("index")} icon={<RxDashboard />} />
         <Route route={getRouteInfoByName("index")} icon={<RxDashboard />} />
       </Menu>
       <Flex column sx={{ flex: 1, height: "100vh" }}>
         <Topbar />
-        <Flex column sx={{ mx: 4, flex: 1, mb: 4, mt: 6 }}>
+        <Flex column sx={{ mx: 4, flex: 1, mb: 4, mt: 6, overflowX: "auto" }}>
           {children}
         </Flex>
       </Flex>

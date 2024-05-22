@@ -1,6 +1,5 @@
 import Flex from "@/components/Layout/Flex";
 import {
-  Button,
   Card,
   Chip,
   IconButton,
@@ -12,10 +11,16 @@ import {
 } from "@mui/material";
 import TableCell from "@/components/Table/TableCell";
 import { GoDotFill } from "react-icons/go";
-import { PiPlus, PiSignIn } from "react-icons/pi";
+import { PiSignIn } from "react-icons/pi";
 import LinkModal from "@/app/(authorized)/servers/LinkModal";
 
-export default function Panel() {
+export default async function Panel() {
+  const response = await fetch(process.env["DOMAIN_NAME"] + "/api/instance");
+  if (response.ok) {
+    const res = await response.json();
+    console.log(res);
+  }
+
   return (
     <Flex center sx={{ flex: 1 }}>
       <Card sx={{ p: 3, flex: 1 }}>
