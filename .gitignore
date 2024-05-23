@@ -40,3 +40,6 @@ next-env.d.ts
 
 # macos
 *.DS_STORE
+
+# database ignore
+database/sqlite/guardify.db

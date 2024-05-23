@@ -11,7 +11,7 @@ export default function Label({ children }: Props) {
         textTransform: "uppercase",
         color: "#525976",
         fontSize: 13,
-        paddingLeft: "5px",
+        paddingLeft: "25px",
         marginBottom: "5px",
         marginTop: "35px",
       }}

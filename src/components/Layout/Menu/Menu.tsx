@@ -1,10 +1,8 @@
-"use client";
-
-import { Box } from "@mui/material";
 import Image from "next/image";
 import icon from "@/assets/horizontal-logo.png";
 import { ReactNode } from "react";
 import Flex from "@/components/Layout/Flex";
+import Container from "@/components/Layout/Menu/Container";
 
 interface Props {
   children: ReactNode;
@@ -12,14 +10,7 @@ interface Props {
 
 export default function Menu({ children }: Props) {
   return (
-    <Box
-      sx={{
-        height: "100vh",
-        width: 275,
-        backgroundColor: "#252c48",
-        px: 3,
-      }}
-    >
+    <Container>
       <Flex center sx={{ mt: 2, position: "relative", height: "50px" }}>
         <Image
           src={icon}
@@ -31,9 +22,9 @@ export default function Menu({ children }: Props) {
           }}
         />
       </Flex>
-      <Flex column sx={{ gap: 1, mt: 4 }}>
+      <Flex column sx={{ gap: 1, mt: 6 }}>
         {children}
       </Flex>
-    </Box>
+    </Container>
   );
 }

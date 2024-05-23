@@ -1,17 +1,16 @@
-"use client";
 import { createTheme } from "@mui/material/styles";
 
 const theme = createTheme({
   palette: {
     mode: "dark",
     background: {
-      default: "#1c2039",
-      paper: "#262b49",
+      default: "#1e1e1e",
+      paper: "#171717",
     },
     text: {
       primary: "#eaf0ff",
-      secondary: "#4e5570",
-      disabled: "#323755",
+      secondary: "#4a505f",
+      disabled: "#cad0df",
     },
     primary: {
       main: "#e0305a",
@@ -38,6 +37,23 @@ const theme = createTheme({
         root: {
           backgroundImage: "none",
           borderRadius: "12px",
+        },
+      },
+    },
+    MuiButton: {
+      styleOverrides: {
+        root: {
+          textTransform: "capitalize",
+          borderRadius: "9px",
+        },
+      },
+    },
+    MuiTextField: {
+      styleOverrides: {
+        root: {
+          "& .MuiOutlinedInput-notchedOutline": {
+            borderRadius: "9px",
+          },
         },
       },
     },

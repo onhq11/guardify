@@ -4,7 +4,7 @@ import { CiBellOn, CiSearch, CiSettings } from "react-icons/ci";
 
 export default function Toolbar() {
   return (
-    <Flex sx={{ gap: 1 }} around>
+    <Flex sx={{ gap: 1, mt: { xs: 4, lg: 2 } }} around>
       <Flex alignCenter>
         <IconButton sx={{ fontSize: 26 }} color="secondary">
           <CiSearch />
