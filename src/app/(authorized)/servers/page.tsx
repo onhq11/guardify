@@ -1,25 +1,27 @@
 import Flex from "@/components/Layout/Flex";
 import {
+  Box,
   Card,
   Chip,
-  IconButton,
   Table,
   TableBody,
   TableContainer,
   TableHead,
   TableRow,
+  Tooltip,
 } from "@mui/material";
 import TableCell from "@/components/Table/TableCell";
 import { GoDotFill } from "react-icons/go";
-import { PiSignIn } from "react-icons/pi";
+import { PiInfo, PiSignIn } from "react-icons/pi";
 import LinkModal from "@/app/(authorized)/servers/LinkModal";
+import { InstancesAPI } from "@/api/Instances";
+import Link from "next/link";
+import { generatePath } from "@/utils/route";
+import { protectedRoutes } from "@/config/routes/protectedRoutes";
+import IconButton from "@/components/Layout/IconButton";
 
-export default async function Panel() {
-  const response = await fetch(process.env["DOMAIN_NAME"] + "/api/instance");
-  if (response.ok) {
-    const res = await response.json();
-    console.log(res);
-  }
+export default async function () {
+  const data = await InstancesAPI.LIST.listInstances();
 
   return (
     <Flex center sx={{ flex: 1 }}>
@@ -41,66 +43,52 @@ export default async function Panel() {
                 </TableRow>
               </TableHead>
               <TableBody>
-                <TableRow>
-                  <TableCell>1</TableCell>
-                  <TableCell>
-                    <Flex alignCenter sx={{ gap: 1 }}>
-                      S720 <GoDotFill style={{ color: "green" }} />
-                    </Flex>
-                  </TableCell>
-                  <TableCell>
-                    <Chip size="small" color="info" label="3 / 5" />
-                  </TableCell>
-                  <TableCell>
-                    <Chip size="small" color="info" label="Available: 12" />
-                  </TableCell>
-                  <TableCell>23d 15h 23m 12s</TableCell>
-                  <TableCell align="right">
-                    <IconButton sx={{ p: 0.5 }} color="secondary">
-                      <PiSignIn style={{ fontSize: 20 }} />
-                    </IconButton>
-                  </TableCell>
-                </TableRow>
-                <TableRow>
-                  <TableCell>2</TableCell>
-                  <TableCell>
-                    <Flex alignCenter sx={{ gap: 1 }}>
-                      T630 <GoDotFill style={{ color: "green" }} />
-                    </Flex>
-                  </TableCell>
-                  <TableCell>
-                    <Chip size="small" color="success" label="12 / 12" />
-                  </TableCell>
-                  <TableCell>
-                    <Chip size="small" color="success" label="Up to date" />
-                  </TableCell>
-                  <TableCell>2d 12h 3m 58s</TableCell>
-                  <TableCell align="right">
-                    <IconButton sx={{ p: 0.5 }} color="secondary">
-                      <PiSignIn style={{ fontSize: 20 }} />
-                    </IconButton>
-                  </TableCell>
-                </TableRow>
-                <TableRow>
-                  <TableCell>3</TableCell>
-                  <TableCell>
-                    <Flex alignCenter sx={{ gap: 1 }}>
-                      Aspire M1935 <GoDotFill style={{ color: "red" }} />
-                    </Flex>
-                  </TableCell>
-                  <TableCell>
-                    <Chip size="small" color="error" label="0 / 38" />
-                  </TableCell>
-                  <TableCell>
-                    <Chip size="small" color="error" label="Connection lost" />
-                  </TableCell>
-                  <TableCell>0s</TableCell>
-                  <TableCell align="right">
-                    <IconButton sx={{ p: 0.5 }} color="secondary">
-                      <PiSignIn style={{ fontSize: 20 }} />
-                    </IconButton>
-                  </TableCell>
-                </TableRow>
+                {data.items?.map((item: any) => (
+                  <TableRow key={item.id}>
+                    <TableCell>{item.id}</TableCell>
+                    <TableCell>
+                      <Flex alignCenter sx={{ gap: 1 }}>
+                        {item.name} <GoDotFill style={{ color: "green" }} />
+                      </Flex>
+                    </TableCell>
+                    <TableCell>
+                      <Chip size="small" color="info" label="3 / 5" />
+                    </TableCell>
+                    <TableCell>
+                      <Chip size="small" color="info" label="Available: 12" />
+                    </TableCell>
+                    <TableCell>23d 15h 23m 12s</TableCell>
+                    <TableCell align="right">
+                      <IconButton
+                        label={
+                          <Flex column>
+                            <Box>
+                              <span style={{ fontWeight: "bold" }}>
+                                Address:
+                              </span>{" "}
+                              {item.address}
+                            </Box>
+                          </Flex>
+                        }
+                        sx={{ p: 0.5 }}
+                        color="info"
+                      >
+                        <PiInfo style={{ fontSize: 20 }} />
+                      </IconButton>
+                      <IconButton
+                        href={generatePath(
+                          protectedRoutes.server_details.href,
+                          { id: item.id },
+                        )}
+                        label={"Server Details"}
+                        sx={{ p: 0.5 }}
+                        color="secondary"
+                      >
+                        <PiSignIn style={{ fontSize: 20 }} />
+                      </IconButton>
+                    </TableCell>
+                  </TableRow>
+                ))}
               </TableBody>
             </Table>
           </TableContainer>

@@ -13,7 +13,9 @@ import { useSnackbar } from "notistack";
 import { errorVariant, successVariant } from "@/consts/snackbarVariants";
 import { errorOccurred } from "@/utils/consoleErrors";
 import { isJsonParsable } from "@/utils/json";
-import { response } from "@/consts/Websockets/response";
+import { responseStatus } from "@/consts/Websockets/responseStatus";
+import { router } from "next/client";
+import { InstancesAPI } from "@/api/Instances";
 
 export default function LinkModal() {
   const [open, setOpen] = useState(false);
@@ -30,7 +32,7 @@ export default function LinkModal() {
       socket.send(buildRequest(command.INIT));
     });
 
-    socket.addEventListener("message", (event) => {
+    socket.addEventListener("message", async (event) => {
       let responseData = event.data;
       if (!isJsonParsable(responseData)) {
         enqueueSnackbar("Failed to connect to the server", errorVariant);
@@ -40,28 +42,30 @@ export default function LinkModal() {
       responseData = JSON.parse(responseData);
       const { data, message } = responseData;
 
-      if (message !== response.OK) {
+      if (message !== responseStatus.OK) {
         enqueueSnackbar("Failed to connect to the server", errorVariant);
         return;
       }
 
-      fetch("/api/instance", {
-        method: "POST",
-        body: JSON.stringify({
+      const response = await InstancesAPI.CREATE.createInstance(
+        {
           name: formData.name,
           address: formData.address,
           psk: data,
-        }),
-      }).then((res) => {
-        if (!res.ok) {
-          enqueueSnackbar("Failed to connect to the server", errorVariant);
-          return;
-        }
+        },
+        () => {
+          setOpen(false);
+          setLoading(false);
+        },
+      );
+      console.log(response);
 
-        enqueueSnackbar("Server linked successfully", successVariant);
-        setOpen(false);
-        setLoading(false);
-      });
+      if (!response.ok) {
+        enqueueSnackbar("Failed to connect to the server", errorVariant);
+        return;
+      }
+
+      enqueueSnackbar("Server linked successfully", successVariant);
     });
 
     socket.addEventListener("error", (event) => {

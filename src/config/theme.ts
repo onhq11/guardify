@@ -57,6 +57,13 @@ const theme = createTheme({
         },
       },
     },
+    MuiTooltip: {
+      styleOverrides: {
+        tooltip: {
+          borderRadius: "9px",
+        },
+      },
+    },
   },
 });
 

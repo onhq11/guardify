@@ -1,14 +1,16 @@
 import { Route } from "@/utils/route";
 
-export const protectedRoutes: Array<Route> = [
-  {
-    name: "panel",
+export const protectedRoutes: Record<string, Route> = {
+  panel: {
     href: "/panel",
     label: "Panel",
   },
-  {
-    name: "servers",
+  servers: {
     href: "/servers",
     label: "Servers",
   },
-];
+  server_details: {
+    href: "/servers/:id",
+    label: "Servers",
+  },
+};

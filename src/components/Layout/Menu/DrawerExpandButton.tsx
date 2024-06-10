@@ -1,5 +1,5 @@
 import { GoSidebarExpand } from "react-icons/go";
-import { IconButton } from "@mui/material";
+import IconButton from "@/components/Layout/IconButton";
 
 interface Props {
   onClick: (() => void) | undefined;
