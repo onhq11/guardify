@@ -7,6 +7,7 @@ import { CssBaseline, ThemeProvider } from "@mui/material";
 import { ReactNode } from "react";
 import MenuModeProvider from "@/components/Provider/MenuModeProvider";
 import ToolbarModeProvider from "@/components/Provider/ToolbarModeProvider";
+import HeadingProvider from "@/components/Provider/HeadingProvider";
 
 interface Props {
   children: ReactNode;
@@ -19,8 +20,10 @@ export default function Providers({ children }: Props) {
         <ThemeProvider theme={theme}>
           <MenuModeProvider>
             <ToolbarModeProvider>
-              <CssBaseline enableColorScheme />
-              {children}
+              <HeadingProvider>
+                <CssBaseline enableColorScheme />
+                {children}
+              </HeadingProvider>
             </ToolbarModeProvider>
           </MenuModeProvider>
         </ThemeProvider>

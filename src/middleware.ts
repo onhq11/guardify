@@ -1,24 +1,25 @@
 import { NextRequest, NextResponse } from "next/server";
 import { isAuthenticated } from "@/utils/auth";
-import { getRouteInfoByName, isProtectedRoute } from "@/utils/route";
+import { isProtectedRoute } from "@/utils/route";
+import { routes } from "@/config/routes/routes";
+import { protectedRoutes } from "@/config/routes/protectedRoutes";
 
 export default async function middleware(req: NextRequest) {
   const isAuth = await isAuthenticated();
   const isProtected = isProtectedRoute(req.nextUrl.pathname);
 
-  const indexRoute = getRouteInfoByName("index");
-  const panelRoute = getRouteInfoByName("panel");
-
   if (isProtected && !isAuth) {
-    return NextResponse.redirect(new URL(indexRoute.href, req.nextUrl));
+    return NextResponse.redirect(new URL(routes.index?.href, req.nextUrl));
   }
 
   if (
     !isProtected &&
     isAuth &&
-    !req.nextUrl.pathname.startsWith(panelRoute.href)
+    !req.nextUrl.pathname.startsWith(protectedRoutes.panel?.href)
   ) {
-    return NextResponse.redirect(new URL(panelRoute.href, req.nextUrl));
+    return NextResponse.redirect(
+      new URL(protectedRoutes.panel?.href, req.nextUrl),
+    );
   }
 
   return NextResponse.next();

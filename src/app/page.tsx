@@ -1,11 +1,12 @@
-import { Button, IconButton, Paper } from "@mui/material";
+import { Button, Paper } from "@mui/material";
 import { PiInfo } from "react-icons/pi";
 import { protectedRoutes } from "@/config/routes/protectedRoutes";
 import Flex from "@/components/Layout/Flex";
 import { routes } from "@/config/routes/routes";
 import Link from "next/link";
+import IconButton from "@/components/Layout/IconButton";
 
-export default function Home() {
+export default function () {
   return (
     <>
       <h1>Home</h1>
@@ -52,11 +53,11 @@ export default function Home() {
       </Paper>
       <h1 style={{ marginTop: 20 }}>Protected routes</h1>
       <Flex sx={{ gap: 2 }}>
-        {protectedRoutes.map((route) => {
+        {Object.entries(protectedRoutes).map(([key, value]) => {
           return (
-            <Link href={route.href} key={route.name}>
-              <Button variant="outlined" color="secondary" key={route.name}>
-                {route.name}
+            <Link href={value.href} key={key}>
+              <Button variant="outlined" color="secondary">
+                {value.label}
               </Button>
             </Link>
           );
@@ -64,11 +65,11 @@ export default function Home() {
       </Flex>
       <h1 style={{ marginTop: 20 }}>Normal routes</h1>
       <Flex sx={{ gap: 2 }}>
-        {routes.map((route) => {
+        {Object.entries(routes).map(([key, value]) => {
           return (
-            <Link href={route.href} key={route.name}>
+            <Link href={value.href} key={key}>
               <Button variant="outlined" color="secondary">
-                {route.name}
+                {value.label}
               </Button>
             </Link>
           );

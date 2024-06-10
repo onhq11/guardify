@@ -1,6 +1,7 @@
 import Flex from "@/components/Layout/Flex";
-import { Avatar, Box, IconButton } from "@mui/material";
+import { Avatar } from "@mui/material";
 import { CiBellOn, CiSearch, CiSettings } from "react-icons/ci";
+import IconButton from "@/components/Layout/IconButton";
 
 export default function Toolbar() {
   return (

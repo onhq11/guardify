@@ -1,9 +1,8 @@
 import { Route } from "@/utils/route";
 
-export const routes: Array<Route> = [
-  {
-    name: "index",
+export const routes: Record<string, Route> = {
+  index: {
     href: "/",
-    label: "Dashboard",
+    label: "Index",
   },
-];
+};

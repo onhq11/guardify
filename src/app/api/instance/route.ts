@@ -1,6 +1,6 @@
 import { Database } from "sqlite3";
 import { open } from "sqlite";
-import { response } from "@/consts/Websockets/response";
+import { responseStatus } from "@/consts/Websockets/responseStatus";
 
 let db: any = null;
 export async function GET(request: Request, res: Response) {
@@ -11,25 +11,31 @@ export async function GET(request: Request, res: Response) {
     });
   }
 
-  const items = await db.all("SELECT * FROM instances", (error: any) => {
-    if (error) {
-      return new Response(
-        JSON.stringify({
-          status: response.INTERNAL_SERVER_ERROR,
-          message: "Error",
-        }),
-        {
-          headers: { "Content-Type": "application/json" },
-          status: 500,
-        },
-      );
-    }
-  });
+  const items = await db.all(
+    "SELECT id, name, address FROM instances",
+    (error: any) => {
+      if (error) {
+        return new Response(
+          JSON.stringify({
+            status: responseStatus.INTERNAL_SERVER_ERROR,
+            message: "Error",
+          }),
+          {
+            headers: { "Content-Type": "application/json" },
+            status: 500,
+          },
+        );
+      }
+    },
+  );
 
-  return new Response(JSON.stringify({ status: response.OK, items: items }), {
-    headers: { "Content-Type": "application/json" },
-    status: 200,
-  });
+  return new Response(
+    JSON.stringify({ status: responseStatus.OK, items: items }),
+    {
+      headers: { "Content-Type": "application/json" },
+      status: 200,
+    },
+  );
 }
 
 export async function POST(request: Request, res: Response) {
@@ -49,7 +55,7 @@ export async function POST(request: Request, res: Response) {
       if (error) {
         return new Response(
           JSON.stringify({
-            status: response.INTERNAL_SERVER_ERROR,
+            status: responseStatus.INTERNAL_SERVER_ERROR,
             message: "Error",
           }),
           {
@@ -61,7 +67,7 @@ export async function POST(request: Request, res: Response) {
     },
   );
 
-  return new Response(JSON.stringify({ message: response.OK }), {
+  return new Response(JSON.stringify({ message: responseStatus.OK }), {
     headers: { "Content-Type": "application/json" },
     status: 200,
   });
