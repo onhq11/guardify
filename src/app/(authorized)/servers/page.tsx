@@ -8,14 +8,12 @@ import {
   TableContainer,
   TableHead,
   TableRow,
-  Tooltip,
 } from "@mui/material";
 import TableCell from "@/components/Table/TableCell";
 import { GoDotFill } from "react-icons/go";
 import { PiInfo, PiSignIn } from "react-icons/pi";
 import LinkModal from "@/app/(authorized)/servers/LinkModal";
 import { InstancesAPI } from "@/api/Instances";
-import Link from "next/link";
 import { generatePath } from "@/utils/route";
 import { protectedRoutes } from "@/config/routes/protectedRoutes";
 import IconButton from "@/components/Layout/IconButton";

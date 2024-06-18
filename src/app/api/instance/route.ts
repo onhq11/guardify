@@ -1,9 +1,9 @@
-import { Database } from "sqlite3";
-import { open } from "sqlite";
 import { responseStatus } from "@/consts/Websockets/responseStatus";
+import { open } from "sqlite";
+import { Database } from "sqlite3";
 
 let db: any = null;
-export async function GET(request: Request, res: Response) {
+export async function GET() {
   if (!db) {
     db = await open({
       filename: "./database/sqlite/guardify.db",
@@ -38,7 +38,7 @@ export async function GET(request: Request, res: Response) {
   );
 }
 
-export async function POST(request: Request, res: Response) {
+export async function POST(request: Request) {
   const req = await request.json();
   if (!db) {
     db = await open({

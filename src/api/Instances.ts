@@ -16,6 +16,18 @@ export async function listInstances(callback?: any) {
   return res.json();
 }
 
+export async function readInstance(id: number, callback?: any) {
+  const res = await fetch(buildURL(`/api/instance/${id}`), {
+    method: "get",
+  }).finally(callback);
+
+  if (!res.ok) {
+    throw new Error("Failed to fetch data");
+  }
+
+  return res.json();
+}
+
 export async function createInstance(data: any, callback?: any) {
   const res = await fetch(buildURL("/api/instance"), {
     method: "post",
@@ -32,6 +44,9 @@ export async function createInstance(data: any, callback?: any) {
 export const InstancesAPI = {
   LIST: {
     listInstances,
+  },
+  READ: {
+    readInstance,
   },
   CREATE: {
     createInstance,
