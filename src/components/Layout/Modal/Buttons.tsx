@@ -8,7 +8,7 @@ interface Props {
   loading?: boolean;
 }
 
-export default function ModalButtons({
+export default function Buttons({
   handleClose = () => {},
   handleConfirm = () => {},
   loading = false,

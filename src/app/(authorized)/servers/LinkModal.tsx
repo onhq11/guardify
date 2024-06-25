@@ -6,7 +6,7 @@ import { useState } from "react";
 import Modal from "@/components/Layout/Modal/Modal";
 import { FormProvider, useForm } from "react-hook-form";
 import InputText from "@/components/Form/InputText";
-import ModalButtons from "@/components/Layout/Modal/ModalButtons";
+import Buttons from "@/components/Layout/Modal/Buttons";
 import { buildRequest } from "@/utils/websocket";
 import { command } from "@/consts/Websockets/command";
 import { useSnackbar } from "notistack";
@@ -94,10 +94,7 @@ export default function LinkModal() {
               label="IP Address"
               required
             />
-            <ModalButtons
-              handleClose={() => setOpen(false)}
-              loading={loading}
-            />
+            <Buttons handleClose={() => setOpen(false)} loading={loading} />
           </form>
         </FormProvider>
       </Modal>

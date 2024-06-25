@@ -17,16 +17,16 @@ export default function Providers({ children }: Props) {
   return (
     <AppRouterCacheProvider>
       <SnackbarProvider>
-        <ThemeProvider theme={theme}>
-          <MenuModeProvider>
-            <ToolbarModeProvider>
-              <HeadingProvider>
-                <CssBaseline enableColorScheme />
-                {children}
-              </HeadingProvider>
-            </ToolbarModeProvider>
-          </MenuModeProvider>
-        </ThemeProvider>
+        {/*<ThemeProvider theme={theme}>*/}
+        <MenuModeProvider>
+          <ToolbarModeProvider>
+            <HeadingProvider>
+              <CssBaseline enableColorScheme />
+              {children}
+            </HeadingProvider>
+          </ToolbarModeProvider>
+        </MenuModeProvider>
+        {/*</ThemeProvider>*/}
       </SnackbarProvider>
     </AppRouterCacheProvider>
   );
