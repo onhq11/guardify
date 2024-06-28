@@ -10,6 +10,7 @@ interface Props {
   center?: boolean;
   end?: boolean;
   column?: boolean;
+  fullWidth?: boolean;
   [key: string]: any;
 }
 
@@ -22,6 +23,7 @@ export default function Flex({
   center,
   end,
   column,
+  fullWidth,
   ...props
 }: Props) {
   const additionalSx = {
@@ -32,6 +34,7 @@ export default function Flex({
     ...(around && { justifyContent: "space-around" }),
     ...(center && { justifyContent: "center" }),
     ...(end && { justifyContent: "flex-end" }),
+    ...(fullWidth && { width: "100%" }),
   };
 
   return (
